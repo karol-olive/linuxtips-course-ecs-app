@@ -14,6 +14,8 @@ variable "service_healthcheck" {}
 
 variable "service_launch_type" {}
 
+variable "container_image" {}
+
 variable "service_hosts" {}
 
 variable "service_task_count" {}

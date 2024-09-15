@@ -15,6 +15,8 @@ module "service" {
   service_task_count          = var.service_task_count
   service_hosts               = var.service_hosts
 
+  container_image = var.container_image
+
   envrionment_variables = var.envrionment_variables
   capabilities          = var.capabilities
 
