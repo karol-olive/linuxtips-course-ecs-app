@@ -1,5 +1,6 @@
 module "service" {
-  source = "git::https://github.com/karol-olive/linuxtips-course-ecs-module.git"
+  #source = "git::https://github.com/karol-olive/linuxtips-course-ecs-module.git"
+  source = "/Users/kaolive/Documents/study/linuxtips-aws/linuxtips-course-ecs-module"
 
   region                      = var.region
   cluster_name                = var.cluster_name
@@ -14,6 +15,8 @@ module "service" {
   service_task_count          = var.service_task_count
   service_hosts               = var.service_hosts
 
+  container_image = var.container_image
+
   envrionment_variables = var.envrionment_variables
   capabilities          = var.capabilities
 
@@ -23,4 +26,39 @@ module "service" {
     data.aws_ssm_parameter.private_subnet_1b.value,
     data.aws_ssm_parameter.private_subnet_1c.value
   ]
+
+  # Autoscaling
+  scale_type   = var.scale_type
+  task_minimum = var.task_minimum
+  task_maximum = var.task_minimum
+
+  # CPU Autoscaling ou
+
+  scale_out_cpu_threshold       = var.scale_out_cpu_threshold
+  scale_out_adjustment          = var.scale_out_adjustment
+  scale_out_comparison_operator = var.scale_out_comparison_operator
+  scale_out_statistic           = var.scale_out_statistic
+  scale_out_period              = var.scale_out_period
+  scale_out_evaluation_periods  = var.scale_out_evaluation_periods
+  scale_out_cooldown            = var.scale_out_cooldown
+
+  # CPU Autoscaling in
+
+  scale_in_cpu_threshold       = var.scale_out_cpu_threshold
+  scale_in_adjustment          = var.scale_out_adjustment
+  scale_in_comparison_operator = var.scale_out_comparison_operator
+  scale_in_statistic           = var.scale_out_statistic
+  scale_in_period              = var.scale_out_period
+  scale_in_evaluation_periods  = var.scale_out_evaluation_periods
+  scale_in_cooldown            = var.scale_out_cooldown
+
+  # CPU Tracking Autoscaling
+  scale_tracking_cpu = var.scale_tracking_cpu
+
+
+  # Tracking Requests Autoscaling
+  alb_arn                 = data.aws_ssm_parameter.alb.value
+  scale_tracking_requests = var.scale_tracking_requests
 }
+
+
