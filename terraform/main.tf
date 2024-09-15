@@ -1,6 +1,6 @@
 module "service" {
-  #source = "git::https://github.com/karol-olive/linuxtips-course-ecs-module.git"
-  source = "/Users/kaolive/Documents/study/linuxtips-aws/linuxtips-course-ecs-module"
+  source = "git::https://github.com/karol-olive/linuxtips-course-ecs-module.git"
+  #source = "/Users/kaolive/Documents/study/linuxtips-aws/linuxtips-course-ecs-module"
 
   region                      = var.region
   cluster_name                = var.cluster_name
